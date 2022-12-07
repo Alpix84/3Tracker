@@ -13,6 +13,9 @@
         <action
             android:id="@+id/action_splashScreen_to_loginScreen"
             app:destination="@id/loginScreen" />
+        <action
+            android:id="@+id/action_splashScreen_to_activitiesFeed"
+            app:destination="@id/activitiesFeed" />
     </fragment>
     <fragment
         android:id="@+id/loginScreen"
