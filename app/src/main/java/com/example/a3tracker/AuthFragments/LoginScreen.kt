@@ -11,8 +11,12 @@ import android.widget.EditText
 import android.widget.ImageView
 import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
+import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import com.example.a3tracker.Enums.LoginResult
 import com.example.a3tracker.R
+import com.example.a3tracker.ViewModels.LoginViewModel
 
 class LoginScreen : Fragment() {
 
@@ -21,6 +25,7 @@ class LoginScreen : Fragment() {
     private lateinit var passwordText : EditText
     private lateinit var emailText : EditText
     private lateinit var loginButton : Button
+    private val loginVM: LoginViewModel by activityViewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -57,7 +62,18 @@ class LoginScreen : Fragment() {
             if(emailText.text.toString().isEmpty() || passwordText.text.toString().isEmpty()){
                 Toast.makeText(activity,"Please fill in all fields!",Toast.LENGTH_SHORT).show()
             }else{
-                findNavController().navigate(R.id.action_loginScreen_to_activitiesFeed)
+                loginVM.login(emailText.text.toString(),passwordText.text.toString())
+                loginVM.loginResult.observe(viewLifecycleOwner){
+                    if(it == LoginResult.LOADING){
+                        return@observe
+                    }
+                    if (it == LoginResult.SUCCESS){
+                        findNavController().navigate(R.id.action_loginScreen_to_activitiesFeed)
+                    }
+                    else if(it == LoginResult.INVALID_CREDENTIALS){
+                        Toast.makeText(activity,"Invalid email or password!",Toast.LENGTH_SHORT).show()
+                    }
+                }
             }
         }
 

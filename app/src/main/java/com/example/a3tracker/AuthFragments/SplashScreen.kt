@@ -57,7 +57,7 @@ class SplashScreen : Fragment() {
             override fun onResponse(call: Call<CurrentUser?>, response: Response<CurrentUser?>) {
                 val responseBody = response.body()
                 Log.i("Splash Screen", responseBody?.ID.toString())
-                if(responseBody?.ID == null ){
+                if(responseBody == null ){
                     findNavController().navigate(R.id.action_splashScreen_to_loginScreen)
                 }else{
                     findNavController().navigate(R.id.action_splashScreen_to_activitiesFeed)
