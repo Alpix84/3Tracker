@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_navgraph"
+    app:startDestination="@id/activitiesFeed2">
+
+    <fragment
+        android:id="@+id/activitiesFeed2"
+        android:name="com.example.a3tracker.MainFragments.ActivitiesFeed"
+        android:label="fragment_activities_feed"
+        tools:layout="@layout/fragment_activities_feed" />
+</navigation>

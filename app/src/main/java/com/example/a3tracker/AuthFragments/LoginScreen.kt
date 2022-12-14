@@ -1,5 +1,6 @@
 package com.example.a3tracker.AuthFragments
 
+import android.content.Intent
 import android.os.Bundle
 import android.text.method.PasswordTransformationMethod
 import androidx.fragment.app.Fragment
@@ -14,6 +15,7 @@ import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import com.example.a3tracker.Activities.MainActivity
 import com.example.a3tracker.Enums.LoginResult
 import com.example.a3tracker.R
 import com.example.a3tracker.ViewModels.LoginViewModel
@@ -68,7 +70,7 @@ class LoginScreen : Fragment() {
                         return@observe
                     }
                     if (it == LoginResult.SUCCESS){
-                        findNavController().navigate(R.id.action_loginScreen_to_activitiesFeed)
+                        startActivity(Intent(activity,MainActivity::class.java))
                     }
                     else if(it == LoginResult.INVALID_CREDENTIALS){
                         Toast.makeText(activity,"Invalid email or password!",Toast.LENGTH_SHORT).show()

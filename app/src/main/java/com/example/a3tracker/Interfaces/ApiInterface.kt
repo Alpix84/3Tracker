@@ -1,6 +1,6 @@
 package com.example.a3tracker.Interfaces
 
-import com.example.a3tracker.DataClasses.CurrentUser
+import com.example.a3tracker.ViewModels.CurrentUserViewModel
 import com.example.a3tracker.DataClasses.LoginRequest
 import com.example.a3tracker.DataClasses.LoginResponse
 import com.example.a3tracker.Objects.ApiClient
@@ -13,8 +13,8 @@ import retrofit2.http.POST
 interface ApiInterface{
 
 
-    @GET("user")
-    fun getCurrentUser(): Call<CurrentUser>
+    @GET("/user")
+    fun getCurrentUser(): Call<CurrentUserViewModel>
 
     @POST("/login")
     suspend fun loginUser(@Body loginRequest: LoginRequest): Response<LoginResponse>

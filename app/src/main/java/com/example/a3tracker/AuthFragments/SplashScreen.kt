@@ -1,5 +1,6 @@
 package com.example.a3tracker.AuthFragments
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -8,7 +9,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.navigation.fragment.findNavController
-import com.example.a3tracker.DataClasses.CurrentUser
+import com.example.a3tracker.Activities.MainActivity
+import com.example.a3tracker.ViewModels.CurrentUserViewModel
 import com.example.a3tracker.Interfaces.ApiInterface
 import com.example.a3tracker.R
 import retrofit2.Call
@@ -53,18 +55,18 @@ class SplashScreen : Fragment() {
 
         val retrofitData = retrofitBuilder.getCurrentUser()
 
-        retrofitData.enqueue(object : Callback<CurrentUser?> {
-            override fun onResponse(call: Call<CurrentUser?>, response: Response<CurrentUser?>) {
+        retrofitData.enqueue(object : Callback<CurrentUserViewModel?> {
+            override fun onResponse(call: Call<CurrentUserViewModel?>, response: Response<CurrentUserViewModel?>) {
                 val responseBody = response.body()
-                Log.i("Splash Screen", responseBody?.ID.toString())
+                Log.i("Splash Screen", responseBody?.getID().toString())
                 if(responseBody == null ){
                     findNavController().navigate(R.id.action_splashScreen_to_loginScreen)
                 }else{
-                    findNavController().navigate(R.id.action_splashScreen_to_activitiesFeed)
+                    startActivity(Intent(activity,MainActivity::class.java))
                 }
             }
 
-            override fun onFailure(call: Call<CurrentUser?>, t: Throwable) {
+            override fun onFailure(call: Call<CurrentUserViewModel?>, t: Throwable) {
                 Log.i("Splash Screen","No response from server!")
                 Toast.makeText(activity,"ERROR!\n" +
                         "Please check internet connection and restart the application!",Toast.LENGTH_SHORT).show()

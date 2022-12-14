@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@id/activitiesFeed">
+    <fragment
+        android:id="@+id/activitiesFeed"
+        android:name="com.example.a3tracker.MainFragments.ActivitiesFeed"
+        android:label="fragment_activities_feed"
+        tools:layout="@layout/fragment_activities_feed" />
+    <fragment
+        android:id="@+id/groupsFragment"
+        android:name="com.example.a3tracker.Activities.ui.groups.GroupsFragment"
+        android:label="fragment_groups"
+        tools:layout="@layout/fragment_groups" />
+    <fragment
+        android:id="@+id/tasksFragment"
+        android:name="com.example.a3tracker.Activities.ui.tasks.TasksFragment"
+        android:label="fragment_settings"
+        tools:layout="@layout/fragment_settings" />
+    <fragment
+        android:id="@+id/settingsFragment"
+        android:name="com.example.a3tracker.Activities.ui.settings.SettingsFragment"
+        android:label="fragment_tasks"
+        tools:layout="@layout/fragment_tasks" />
+</navigation>

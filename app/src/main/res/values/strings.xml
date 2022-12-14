@@ -4,4 +4,9 @@
     <string name="login">Login Screen</string>
     <string name="loginButton">Sign in</string>
     <string name="loginText">Hey, Sign in please!</string>
+    <string name="title_activity_main">MainActivity</string>
+    <string name="title_activities">Activities</string>
+    <string name="title_tasks">My Tasks</string>
+    <string name="title_groups">My Groups</string>
+    <string name="title_settings">Settings</string>
 </resources>
