@@ -1,4 +1,4 @@
-package com.example.a3tracker.MainFragments
+package com.example.a3tracker.Activities.ui.activities
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
