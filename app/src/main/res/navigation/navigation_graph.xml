@@ -13,10 +13,18 @@
         <action
             android:id="@+id/action_splashScreen_to_loginScreen"
             app:destination="@id/loginScreen" />
+        <action
+            android:id="@+id/action_splashScreen_to_activitiesFeed3"
+            app:destination="@id/activitiesFeed3" />
     </fragment>
     <fragment
         android:id="@+id/loginScreen"
         android:name="com.example.a3tracker.AuthFragments.LoginScreen"
         android:label="fragment_login_screen"
         tools:layout="@layout/fragment_login_screen" />
+    <fragment
+        android:id="@+id/activitiesFeed3"
+        android:name="com.example.a3tracker.ui.activities.ActivitiesFeed"
+        android:label="fragment_activities_feed"
+        tools:layout="@layout/fragment_activities_feed" />
 </navigation>

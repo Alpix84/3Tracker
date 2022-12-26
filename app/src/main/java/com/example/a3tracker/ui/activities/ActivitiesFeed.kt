@@ -1,13 +1,17 @@
-package com.example.a3tracker.Activities.ui.activities
+package com.example.a3tracker.ui.activities
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.activityViewModels
 import com.example.a3tracker.R
+import com.example.a3tracker.ViewModels.CurrentUserViewModel
 
 class ActivitiesFeed : Fragment() {
+
+    private val currentUserViewModel : CurrentUserViewModel by activityViewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

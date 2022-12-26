@@ -1,4 +1,4 @@
-package com.example.a3tracker.Activities.ui.settings
+package com.example.a3tracker.ui.settings
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -28,10 +28,8 @@ class SettingsFragment : Fragment() {
         _binding = FragmentSettingsBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-        val textView: TextView = binding.textSettings
-        dashboardViewModel.text.observe(viewLifecycleOwner) {
-            textView.text = it
-        }
+
+
         return root
     }
 

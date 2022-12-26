@@ -1,17 +1,12 @@
 package com.example.a3tracker.Activities
 
 import android.os.Bundle
-import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
-import androidx.navigation.findNavController
-import androidx.navigation.ui.AppBarConfiguration
-import androidx.navigation.ui.setupActionBarWithNavController
-import androidx.navigation.ui.setupWithNavController
-import com.example.a3tracker.Activities.ui.activities.ActivitiesFeed
-import com.example.a3tracker.Activities.ui.groups.GroupsFragment
-import com.example.a3tracker.Activities.ui.settings.SettingsFragment
-import com.example.a3tracker.Activities.ui.tasks.TasksFragment
+import com.example.a3tracker.ui.activities.ActivitiesFeed
+import com.example.a3tracker.ui.groups.GroupsFragment
+import com.example.a3tracker.ui.settings.SettingsFragment
+import com.example.a3tracker.ui.tasks.TasksFragment
 import com.example.a3tracker.R
 import com.example.a3tracker.databinding.ActivityMainBinding
 
@@ -35,8 +30,16 @@ class MainActivity : AppCompatActivity() {
                 else -> {
                 }
             }
-            true
         }
+
+        /*binding.topNavView.setNavigationItemSelectedListener{
+            when(it.itemId){
+                R.id.navigation_profile -> replaceFragment(SettingsFragment())
+                else -> {
+                }
+            }
+            true
+        }*/
 
     }
 

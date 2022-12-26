@@ -1,13 +1,13 @@
-package com.example.a3tracker.Activities.ui.groups
+package com.example.a3tracker.ui.tasks
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
-class GroupsViewModel : ViewModel() {
+class TasksViewModel : ViewModel() {
 
     private val _text = MutableLiveData<String>().apply {
-        value = "This is groups Fragment"
+        value = "This is home Fragment"
     }
     val text: LiveData<String> = _text
 }

@@ -1,4 +1,4 @@
-package com.example.a3tracker.Activities.ui.tasks
+package com.example.a3tracker.ui.groups
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -7,11 +7,11 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import com.example.a3tracker.databinding.FragmentTasksBinding
+import com.example.a3tracker.databinding.FragmentGroupsBinding
 
-class TasksFragment : Fragment() {
+class GroupsFragment : Fragment() {
 
-    private var _binding: FragmentTasksBinding? = null
+    private var _binding: FragmentGroupsBinding? = null
 
     // This property is only valid between onCreateView and
     // onDestroyView.
@@ -22,14 +22,14 @@ class TasksFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val homeViewModel =
-            ViewModelProvider(this).get(TasksViewModel::class.java)
+        val notificationsViewModel =
+            ViewModelProvider(this).get(GroupsViewModel::class.java)
 
-        _binding = FragmentTasksBinding.inflate(inflater, container, false)
+        _binding = FragmentGroupsBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-        val textView: TextView = binding.textTasks
-        homeViewModel.text.observe(viewLifecycleOwner) {
+        val textView: TextView = binding.textGroups
+        notificationsViewModel.text.observe(viewLifecycleOwner) {
             textView.text = it
         }
         return root

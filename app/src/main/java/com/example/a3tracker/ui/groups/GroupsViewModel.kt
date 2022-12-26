@@ -1,13 +1,13 @@
-package com.example.a3tracker.Activities.ui.settings
+package com.example.a3tracker.ui.groups
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
-class SettingsViewModel : ViewModel() {
+class GroupsViewModel : ViewModel() {
 
     private val _text = MutableLiveData<String>().apply {
-        value = "This is settings Fragment"
+        value = "This is groups Fragment"
     }
     val text: LiveData<String> = _text
 }

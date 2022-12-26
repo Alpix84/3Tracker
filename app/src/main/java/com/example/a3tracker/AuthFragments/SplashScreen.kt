@@ -41,37 +41,9 @@ class SplashScreen : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        getUserData()
-        initViewItems()
-        registerListeners()
-    }
-
-    private fun getUserData() {
-        val retrofitBuilder = Retrofit.Builder()
-            .addConverterFactory(GsonConverterFactory.create())
-            .baseUrl(BASE_URL)
-            .build()
-            .create(ApiInterface::class.java)
-
-        val retrofitData = retrofitBuilder.getCurrentUser()
-
-        retrofitData.enqueue(object : Callback<CurrentUserViewModel?> {
-            override fun onResponse(call: Call<CurrentUserViewModel?>, response: Response<CurrentUserViewModel?>) {
-                val responseBody = response.body()
-                Log.i("Splash Screen", responseBody?.getID().toString())
-                if(responseBody == null ){
-                    findNavController().navigate(R.id.action_splashScreen_to_loginScreen)
-                }else{
-                    startActivity(Intent(activity,MainActivity::class.java))
-                }
-            }
-
-            override fun onFailure(call: Call<CurrentUserViewModel?>, t: Throwable) {
-                Log.i("Splash Screen","No response from server!")
-                Toast.makeText(activity,"ERROR!\n" +
-                        "Please check internet connection and restart the application!",Toast.LENGTH_SHORT).show()
-            }
-        })
+        //initViewItems()
+        //registerListeners()
+        findNavController().navigate(R.id.action_splashScreen_to_loginScreen)
     }
 
     private fun initViewItems() {

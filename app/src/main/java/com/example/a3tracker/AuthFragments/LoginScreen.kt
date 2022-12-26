@@ -3,7 +3,7 @@ package com.example.a3tracker.AuthFragments
 import android.content.Intent
 import android.os.Bundle
 import android.text.method.PasswordTransformationMethod
-import androidx.fragment.app.Fragment
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,12 +12,12 @@ import android.widget.EditText
 import android.widget.ImageView
 import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
-import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.fragment.findNavController
 import com.example.a3tracker.Activities.MainActivity
 import com.example.a3tracker.Enums.LoginResult
 import com.example.a3tracker.R
+import com.example.a3tracker.ViewModels.CurrentUserViewModel
 import com.example.a3tracker.ViewModels.LoginViewModel
 
 class LoginScreen : Fragment() {
@@ -28,6 +28,7 @@ class LoginScreen : Fragment() {
     private lateinit var emailText : EditText
     private lateinit var loginButton : Button
     private val loginVM: LoginViewModel by activityViewModels()
+    private val currentUserViewModel : CurrentUserViewModel by activityViewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -70,6 +71,10 @@ class LoginScreen : Fragment() {
                         return@observe
                     }
                     if (it == LoginResult.SUCCESS){
+                        val response = loginVM.getResponse()
+                        //Log.i("LOGIN RESPONSES","${response[0]} ${response[1]} ${response[2]}")
+                        currentUserViewModel.updateLoginResponse(response[0].toLong(),response[1],response[2].toInt())
+                        currentUserViewModel.getCurrentUser()
                         startActivity(Intent(activity,MainActivity::class.java))
                     }
                     else if(it == LoginResult.INVALID_CREDENTIALS){
