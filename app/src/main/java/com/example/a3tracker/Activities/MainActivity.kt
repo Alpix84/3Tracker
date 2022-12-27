@@ -19,9 +19,9 @@ class MainActivity : AppCompatActivity() {
 
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        replaceFragment(ActivitiesFeed())
+        replaceFragment(TasksFragment())
 
-        binding.bottomNavView.setOnItemReselectedListener {
+        binding.bottomNavView.setOnItemSelectedListener {
             when(it.itemId){
                 R.id.navigation_activities_feed -> replaceFragment(ActivitiesFeed())
                 R.id.navigation_groups -> replaceFragment(GroupsFragment())
@@ -30,17 +30,8 @@ class MainActivity : AppCompatActivity() {
                 else -> {
                 }
             }
-        }
-
-        /*binding.topNavView.setNavigationItemSelectedListener{
-            when(it.itemId){
-                R.id.navigation_profile -> replaceFragment(SettingsFragment())
-                else -> {
-                }
-            }
             true
-        }*/
-
+        }
     }
 
     private fun replaceFragment(fragment: Fragment){

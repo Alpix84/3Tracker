@@ -9,4 +9,6 @@
     <string name="title_tasks">My Tasks</string>
     <string name="title_groups">My Groups</string>
     <string name="title_settings">Settings</string>
+    <string name="my_profile">My Profile</string>
+    <string name="textview">TextView</string>
 </resources>

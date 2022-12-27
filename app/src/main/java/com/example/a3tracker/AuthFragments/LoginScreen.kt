@@ -1,9 +1,10 @@
 package com.example.a3tracker.AuthFragments
 
+import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.text.method.PasswordTransformationMethod
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -75,6 +76,8 @@ class LoginScreen : Fragment() {
                         //Log.i("LOGIN RESPONSES","${response[0]} ${response[1]} ${response[2]}")
                         currentUserViewModel.updateLoginResponse(response[0].toLong(),response[1],response[2].toInt())
                         currentUserViewModel.getCurrentUser()
+                        val sharedPreferences = requireActivity().getSharedPreferences("TRACKER",Context.MODE_PRIVATE)
+                        sharedPreferences.edit().putString("token",currentUserViewModel.getToken()).apply()
                         startActivity(Intent(activity,MainActivity::class.java))
                     }
                     else if(it == LoginResult.INVALID_CREDENTIALS){

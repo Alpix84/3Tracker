@@ -1,5 +1,6 @@
 package com.example.a3tracker.AuthFragments
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -24,6 +25,7 @@ const val BASE_URL = "https://tracker-3track.a2hosted.com/"
 
 class SplashScreen : Fragment() {
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
@@ -41,16 +43,9 @@ class SplashScreen : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        //initViewItems()
-        //registerListeners()
+        val sharedPreferences = requireActivity().getSharedPreferences("TRACKER", Context.MODE_PRIVATE)
+        val retrievedToken = sharedPreferences.getString("token",null)
+        Log.i("Splash Screen",retrievedToken.toString())
         findNavController().navigate(R.id.action_splashScreen_to_loginScreen)
-    }
-
-    private fun initViewItems() {
-
-    }
-
-    private fun registerListeners() {
-
     }
 }

@@ -3,7 +3,6 @@ package com.example.a3tracker.ViewModels
 import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.a3tracker.DataClasses.GetCURequest
 import com.example.a3tracker.DataClasses.LoginResponse
 import com.example.a3tracker.Repo.UserRepository
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -18,8 +17,8 @@ data class CurrentUser(
     val email: String = "",
     val first_name: String = "",
     val last_name: String = "",
-    val location: String = "",
-    val phone_number: String = "",
+    val location: String? = null,
+    val phone_number: String? = null,
     val type: Int = 0,
     val loginResponse: LoginResponse = LoginResponse(123456,"",420),
     val imageUrl : String = ""
@@ -49,11 +48,11 @@ class CurrentUserViewModel : ViewModel(){
         return _uiState.value.type
     }
 
-    fun getLocation():String{
+    fun getLocation():String?{
         return _uiState.value.location
     }
 
-    fun getPhoneNumber():String{
+    fun getPhoneNumber():String?{
         return _uiState.value.phone_number
     }
 
@@ -148,14 +147,30 @@ class CurrentUserViewModel : ViewModel(){
         viewModelScope.launch {
             try {
                 val response = userRepo.getCurrentUser(cuRequest = token)
-                if(response?.isSuccessful == true){
-                    Log.i("CurrentUser","GetCU response ${response.body()}")
-                    //val responses = response.body().toString().trim()
-                    /*_uiState.update { currentState ->
+                if(response.isSuccessful == true){
+                    val responses = response.body().toString().trim().split(",")
+                    val responsesToUse : MutableList<String> = mutableListOf()
+                    for(r in responses){
+                        val temp = r.split("=")[1]
+                        responsesToUse.add(temp)
+                    }
+                    for(r in responsesToUse){
+                        Log.i("CurrentUser", r)
+                    }
+                    _uiState.update { currentState ->
                         currentState.copy(
-                            ID = response.
+                            ID = responsesToUse[0].toInt(),
+                            last_name = responsesToUse[1],
+                            first_name = responsesToUse[2],
+                            email = responsesToUse[3],
+                            type = responsesToUse[4].toInt(),
+                            location = responsesToUse[5],
+                            phone_number = responsesToUse[6],
+                            department_id = responsesToUse[7].toInt(),
+                            imageUrl = responsesToUse[8],
                         )
-                    }*/
+                    }
+                    Log.i("CurrentUser",getName())
                 }
             } catch (ex: Exception){
                 Log.i("CU VM",ex.message,ex)
