@@ -78,6 +78,7 @@ class LoginScreen : Fragment() {
                         currentUserViewModel.getCurrentUser()
                         val sharedPreferences = requireActivity().getSharedPreferences("TRACKER",Context.MODE_PRIVATE)
                         sharedPreferences.edit().putString("token",currentUserViewModel.getToken()).apply()
+                        sharedPreferences.edit().putLong("deadline",currentUserViewModel.getDeadline()).apply()
                         startActivity(Intent(activity,MainActivity::class.java))
                     }
                     else if(it == LoginResult.INVALID_CREDENTIALS){
@@ -105,6 +106,5 @@ class LoginScreen : Fragment() {
                 Toast.makeText(activity,"Where do you want to go back? ☺",Toast.LENGTH_SHORT).show()
             }
         })
-
     }
 }

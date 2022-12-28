@@ -6,11 +6,13 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.ViewModelProvider
+import com.example.a3tracker.ViewModels.CurrentUserViewModel
 import com.example.a3tracker.databinding.FragmentGroupsBinding
 
 class GroupsFragment : Fragment() {
-
+    private val currentUserVM:CurrentUserViewModel by activityViewModels()
     private var _binding: FragmentGroupsBinding? = null
 
     // This property is only valid between onCreateView and
@@ -30,7 +32,7 @@ class GroupsFragment : Fragment() {
 
         val textView: TextView = binding.textGroups
         notificationsViewModel.text.observe(viewLifecycleOwner) {
-            textView.text = it
+            textView.text = currentUserVM.getName()
         }
         return root
     }

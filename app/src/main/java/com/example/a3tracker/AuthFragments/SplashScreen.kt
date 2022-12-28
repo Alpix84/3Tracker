@@ -9,35 +9,35 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.example.a3tracker.Activities.MainActivity
 import com.example.a3tracker.ViewModels.CurrentUserViewModel
 import com.example.a3tracker.Interfaces.ApiInterface
 import com.example.a3tracker.R
+import com.example.a3tracker.ViewModels.CurrentUser
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import java.util.Date
 
 const val BASE_URL = "https://tracker-3track.a2hosted.com/"
 
 
 class SplashScreen : Fragment() {
 
+    private val currentUserViewModel : CurrentUserViewModel by activityViewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        arguments?.let {
-
-        }
     }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_splash_screen, container, false)
     }
 
@@ -45,7 +45,19 @@ class SplashScreen : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         val sharedPreferences = requireActivity().getSharedPreferences("TRACKER", Context.MODE_PRIVATE)
         val retrievedToken = sharedPreferences.getString("token",null)
-        Log.i("Splash Screen",retrievedToken.toString())
-        findNavController().navigate(R.id.action_splashScreen_to_loginScreen)
+        val retrievedDeadline = sharedPreferences.getLong("deadline",12345678)
+        Log.i("Splash Screen token",retrievedToken.toString())
+        Log.i("Splash Screen deadline",retrievedDeadline.toString())
+        Log.i("Splash Screen time ",Date().time.toString())
+        if(Date().time < retrievedDeadline){
+            currentUserViewModel.updateLoginResponse(retrievedDeadline,retrievedToken.toString(),0)
+            if (currentUserViewModel.getCurrentUser()){
+                startActivity(Intent(activity,MainActivity::class.java))
+            }else{
+                findNavController().navigate(R.id.action_splashScreen_to_loginScreen)
+            }
+        }else{
+            findNavController().navigate(R.id.action_splashScreen_to_loginScreen)
+        }
     }
 }

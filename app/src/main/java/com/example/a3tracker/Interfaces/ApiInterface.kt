@@ -1,6 +1,5 @@
 package com.example.a3tracker.Interfaces
 
-import com.example.a3tracker.DataClasses.GetCURequest
 import com.example.a3tracker.DataClasses.GetCUResponse
 import com.example.a3tracker.DataClasses.LoginRequest
 import com.example.a3tracker.DataClasses.LoginResponse

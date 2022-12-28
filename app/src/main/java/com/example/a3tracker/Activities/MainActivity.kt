@@ -20,6 +20,7 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
         replaceFragment(TasksFragment())
+        binding.bottomNavView.selectedItemId = R.id.navigation_tasks
 
         binding.bottomNavView.setOnItemSelectedListener {
             when(it.itemId){
