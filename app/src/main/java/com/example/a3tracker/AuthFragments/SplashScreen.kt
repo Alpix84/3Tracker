@@ -8,19 +8,11 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.example.a3tracker.Activities.MainActivity
 import com.example.a3tracker.ViewModels.CurrentUserViewModel
-import com.example.a3tracker.Interfaces.ApiInterface
 import com.example.a3tracker.R
-import com.example.a3tracker.ViewModels.CurrentUser
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
-import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
 import java.util.Date
 
 const val BASE_URL = "https://tracker-3track.a2hosted.com/"

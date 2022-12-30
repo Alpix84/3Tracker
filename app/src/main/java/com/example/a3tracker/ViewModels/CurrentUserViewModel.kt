@@ -4,11 +4,12 @@ import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.a3tracker.DataClasses.GetCUResponse
 import com.example.a3tracker.DataClasses.LoginResponse
 import com.example.a3tracker.Repo.UserRepository
 import kotlinx.coroutines.launch
 
-data class CurrentUser(
+data class User(
     var ID: Int = 0,
     var department_id: Int = 0,
     var email: String = "",
@@ -18,11 +19,12 @@ data class CurrentUser(
     var phone_number: String? = null,
     var type: Int = 0,
     var loginResponse: LoginResponse = LoginResponse(123456,"",420),
-    var imageUrl : String = ""
+    var imageUrl : String = "",
+    var mentor : GetCUResponse? = null
 ) : java.io.Serializable
 
 class CurrentUserViewModel : ViewModel(){
-    private val _uiState = MutableLiveData(CurrentUser())
+    private val _uiState = MutableLiveData(User())
 
     fun getID():Int{
         return _uiState.value?.ID ?: 0
@@ -62,6 +64,14 @@ class CurrentUserViewModel : ViewModel(){
 
     fun getDeadline():Long{
         return _uiState.value?.loginResponse?.deadline ?: 0
+    }
+
+    fun getMentor(): GetCUResponse? {
+        return _uiState.value?.mentor
+    }
+
+    fun updateMentor(newMentor : GetCUResponse){
+        _uiState.value?.mentor = newMentor
     }
 
     fun updateLoginResponse(deadline: Long,token: String,userId : Int ){

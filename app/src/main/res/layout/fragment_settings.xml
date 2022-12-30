@@ -32,11 +32,11 @@
 
     <Button
         android:id="@+id/logOutButton"
-        android:layout_width="wrap_content"
+        android:layout_width="280dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="22dp"
+        android:backgroundTint="#a6a5a4"
         android:text="@string/log_out"
-        android:backgroundTint="@color/tracker_blue"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />

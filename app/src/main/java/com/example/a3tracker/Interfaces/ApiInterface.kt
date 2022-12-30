@@ -1,8 +1,6 @@
 package com.example.a3tracker.Interfaces
 
-import com.example.a3tracker.DataClasses.GetCUResponse
-import com.example.a3tracker.DataClasses.LoginRequest
-import com.example.a3tracker.DataClasses.LoginResponse
+import com.example.a3tracker.DataClasses.*
 import com.example.a3tracker.Objects.ApiClient
 import retrofit2.Response
 import retrofit2.http.Body
@@ -18,6 +16,18 @@ interface ApiInterface{
 
     @POST("/login")
     suspend fun loginUser(@Body loginRequest: LoginRequest): Response<LoginResponse>
+
+    @GET("/users")
+    suspend fun getUsers(@Header("token") token: String): Response<List<GetCUResponse>>
+
+    @POST("/task/create")
+    suspend fun createTask(@Header("token") token: String,@Body createTaskRequest: CreateTaskRequest) : Response<String>
+
+    @GET("/task/getTasks")
+    suspend fun getTasks(@Header("token") token:String) : Response<List<GetTasksResponse>>
+
+    @GET("/department")
+    suspend fun getDepartments(@Header("token") token:String) : Response<List<GetDepartmentsResponse>>
 
     companion object {
         fun getApi(): ApiInterface? {

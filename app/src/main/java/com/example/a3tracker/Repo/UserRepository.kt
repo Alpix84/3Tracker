@@ -14,4 +14,8 @@ class UserRepository {
     suspend fun getCurrentUser(cuRequest: String): Response<GetCUResponse> {
         return ApiInterface.getApi()!!.getCurrentUser(token = cuRequest)
     }
+
+    suspend fun getUsers(usersRequest: String): Response<List<GetCUResponse>>{
+        return ApiInterface.getApi()!!.getUsers(token = usersRequest)
+    }
 }

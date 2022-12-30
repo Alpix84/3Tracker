@@ -24,16 +24,12 @@ class GroupsFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val notificationsViewModel =
-            ViewModelProvider(this).get(GroupsViewModel::class.java)
 
         _binding = FragmentGroupsBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-        val textView: TextView = binding.textGroups
-        notificationsViewModel.text.observe(viewLifecycleOwner) {
-            textView.text = currentUserVM.getName()
-        }
+
+
         return root
     }
 
