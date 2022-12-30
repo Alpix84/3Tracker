@@ -1,6 +1,7 @@
 package com.example.a3tracker.ViewModels
 
 import android.util.Log
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -14,6 +15,7 @@ data class AllUsers(
 
 class UsersViewModel : ViewModel() {
     private val _uistate = MutableLiveData(AllUsers())
+
 
     fun getAllUsers(token : String) {
         val userRepo = UserRepository()

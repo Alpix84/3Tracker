@@ -44,7 +44,7 @@ class TasksFragment : Fragment() {
     private lateinit var adapter: TasksAdapter
     private lateinit var recyclerView: RecyclerView
     private lateinit var tasksArrayList: MutableList<Tasks>
-
+    private lateinit var taskDetails : ImageView
     private var _binding: FragmentTasksBinding? = null
 
     // This property is only valid between onCreateView and
@@ -110,6 +110,11 @@ class TasksFragment : Fragment() {
         profile.setOnClickListener {
             replaceFragment(SettingsFragment())
         }
+
+//        taskDetails.setOnClickListener {
+//            replaceFragment(TaskDetailsFragment(recyclerView.id.))
+//        }
+
     }
 
     private fun initViewItems() {
@@ -120,6 +125,7 @@ class TasksFragment : Fragment() {
         newTaskButton = _binding!!.newTaskButton
         profile = _binding!!.profilePicture
         Glide.with(activity).load(currentUserVM.getImageUrl()).into(profile)
+        //taskDetails = binding.recyclerView.findViewById(R.id.taskDetailsButton)
     }
 
     private fun replaceFragment(fragment: Fragment){
