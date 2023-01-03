@@ -293,8 +293,8 @@
         android:layout_width="20dp"
         android:layout_height="30dp"
         android:layout_marginTop="30dp"
-        android:layout_marginEnd="15dp"
-        app:layout_constraintEnd_toEndOf="@+id/newTaskStatus"
+        android:layout_marginEnd="20dp"
+        app:layout_constraintEnd_toEndOf="@+id/taskBackground"
         app:layout_constraintTop_toTopOf="@+id/taskBackground"
         app:srcCompat="@drawable/taskdetailsicon" />
 

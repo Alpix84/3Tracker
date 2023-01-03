@@ -29,6 +29,9 @@ interface ApiInterface{
     @GET("/department")
     suspend fun getDepartments(@Header("token") token:String) : Response<List<GetDepartmentsResponse>>
 
+    @POST("/users/updateProfile")
+    suspend fun updateProfile(@Header("token") token:String,@Body updateProfileRequest: UpdateProfileRequest): Response<String>
+
     companion object {
         fun getApi(): ApiInterface? {
             return ApiClient.client?.create(ApiInterface::class.java)

@@ -125,7 +125,7 @@ class TasksFragment : Fragment() {
         newTaskButton = _binding!!.newTaskButton
         profile = _binding!!.profilePicture
         Glide.with(activity).load(currentUserVM.getImageUrl()).into(profile)
-        //taskDetails = binding.recyclerView.findViewById(R.id.taskDetailsButton)
+        //taskDetails = _binding!!.recyclerView.findViewById(R.id.taskDetailsButton)
     }
 
     private fun replaceFragment(fragment: Fragment){

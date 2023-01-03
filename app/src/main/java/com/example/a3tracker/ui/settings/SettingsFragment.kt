@@ -63,6 +63,7 @@ class SettingsFragment : Fragment() {
             startActivity(Intent(activity,AuthActivity::class.java))
         }
         editProfile.setOnClickListener{
+            replaceFragment(EditProfileFragment())
         }
     }
 
@@ -117,5 +118,12 @@ class SettingsFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    private fun replaceFragment(fragment: Fragment){
+        val fragmentManager = requireFragmentManager()
+        val fragmentTransaction = fragmentManager.beginTransaction()
+        fragmentTransaction.replace(R.id.frame_layout,fragment)
+        fragmentTransaction.commit()
     }
 }

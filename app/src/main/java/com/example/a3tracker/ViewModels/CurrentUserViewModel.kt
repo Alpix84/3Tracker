@@ -38,6 +38,14 @@ class CurrentUserViewModel : ViewModel(){
         return "${_uiState.value?.first_name} ${_uiState.value?.last_name}"
     }
 
+    fun getFirstName(): String{
+        return _uiState.value?.first_name.toString()
+    }
+
+    fun getLastName(): String{
+        return _uiState.value?.last_name.toString()
+    }
+
     fun getEmail():String{
         return _uiState.value?.email ?: ""
     }
