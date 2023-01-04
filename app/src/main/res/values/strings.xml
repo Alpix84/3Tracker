@@ -24,4 +24,12 @@
     <string name="image_urlHint">Image URL</string>
     <string name="phone_number">Phone number</string>
     <string name="location">Location</string>
+    <string name="task_title">Task Title</string>
+    <string name="description">Description</string>
+    <string name="assignee_user_id">Assignee user id</string>
+    <string name="priority_0_2">Priority (1–3)</string>
+    <string name="deadline">Deadline</string>
+    <string name="department_id">Department ID</string>
+    <string name="create">CREATE</string>
+    <string name="new_task">New task</string>
 </resources>

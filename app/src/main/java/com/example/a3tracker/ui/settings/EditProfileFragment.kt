@@ -11,8 +11,10 @@ import androidx.fragment.app.activityViewModels
 import com.example.a3tracker.DataClasses.UpdateProfileRequest
 import com.example.a3tracker.R
 import com.example.a3tracker.ViewModels.CurrentUserViewModel
+import com.example.a3tracker.databinding.ActivityMainBinding
 import com.example.a3tracker.databinding.FragmentEditProfileBinding
 import com.example.a3tracker.ui.tasks.TasksFragment
+import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class EditProfileFragment : Fragment() {
 

@@ -21,7 +21,6 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
         replaceFragment(TasksFragment())
         binding.bottomNavView.selectedItemId = R.id.navigation_tasks
-
         binding.bottomNavView.setOnItemSelectedListener {
             when(it.itemId){
                 R.id.navigation_activities_feed -> replaceFragment(ActivitiesFeed())

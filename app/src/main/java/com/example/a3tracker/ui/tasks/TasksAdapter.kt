@@ -1,17 +1,13 @@
 package com.example.a3tracker.ui.tasks
 
 import android.annotation.SuppressLint
-import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.ProgressBar
 import android.widget.TextView
-import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentActivity
 import androidx.recyclerview.widget.RecyclerView
-import com.example.a3tracker.Activities.MainActivity
 import com.example.a3tracker.DataClasses.Tasks
 import com.example.a3tracker.Enums.TaskPriority
 import com.example.a3tracker.Enums.TaskStatus
@@ -21,7 +17,7 @@ import com.example.a3tracker.ui.groups.GroupsViewModel
 import java.text.SimpleDateFormat
 
 @Suppress("DEPRECATION")
-class TasksAdapter(private val tasksList:MutableList<Tasks>, private val allUsersVM : UsersViewModel, private val groupsVM: GroupsViewModel) :RecyclerView.Adapter<TasksAdapter.MyViewHolder>() {
+class TasksAdapter(private val listener: OnItemClickListener,private val tasksList:MutableList<Tasks>, private val allUsersVM : UsersViewModel, private val groupsVM: GroupsViewModel) :RecyclerView.Adapter<TasksAdapter.MyViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         val itemView = LayoutInflater.from(parent.context).inflate(R.layout.task_item,parent,false)
@@ -107,6 +103,7 @@ class TasksAdapter(private val tasksList:MutableList<Tasks>, private val allUser
         holder.description.text = tempdesc
         holder.progressBar.progress = currentItem.progress
         holder.percentDone.text = "${currentItem.progress}% Done"
+
     }
 
 
@@ -114,7 +111,11 @@ class TasksAdapter(private val tasksList:MutableList<Tasks>, private val allUser
         return tasksList.size
     }
 
-    class MyViewHolder(itemView:View):RecyclerView.ViewHolder(itemView){
+    interface OnItemClickListener {
+        fun onItemClick(position: Int,taskId: Int)
+    }
+
+    inner class MyViewHolder(itemView:View):RecyclerView.ViewHolder(itemView){
         val taskTitle : TextView = itemView.findViewById(R.id.taskTitle)
         val groupName : TextView = itemView.findViewById(R.id.groupName)
         val assignedBy: TextView = itemView.findViewById(R.id.assignedBy)
@@ -137,6 +138,16 @@ class TasksAdapter(private val tasksList:MutableList<Tasks>, private val allUser
         val percentDone : TextView = itemView.findViewById(R.id.percentDoneText)
         val description : TextView = itemView.findViewById(R.id.descriptionText)
         val taskDetails : ImageView = itemView.findViewById(R.id.taskDetailsButton)
+
+        init {
+            itemView.setOnClickListener {
+                val position = adapterPosition
+                if (position != RecyclerView.NO_POSITION) {
+                    listener.onItemClick(position,tasksList[position].taskId)
+                }
+            }
+        }
+
     }
 
 }

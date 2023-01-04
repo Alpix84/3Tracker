@@ -1,7 +1,11 @@
 package com.example.a3tracker.ui.tasks
 
+import android.annotation.SuppressLint
+import android.content.Context
 import android.util.Log
+import android.widget.Toast
 import androidx.lifecycle.*
+import com.example.a3tracker.DataClasses.CreateTaskRequest
 import com.example.a3tracker.DataClasses.Tasks
 import com.example.a3tracker.Enums.TaskPriority
 import com.example.a3tracker.Enums.TaskStatus
@@ -19,6 +23,15 @@ class TasksViewModel : ViewModel(), ViewModelStoreOwner {
 
     fun getTasks():MutableList<Tasks>{
         return _uistate.value!!.tasks
+    }
+
+    fun getTaskById(id: Int):Tasks?{
+        for (t in _uistate.value!!.tasks){
+            if(t!!.taskId == id){
+                return t
+            }
+        }
+        return null
     }
 
     fun getMyTasks(token: String){
@@ -69,6 +82,21 @@ class TasksViewModel : ViewModel(), ViewModelStoreOwner {
                     for(t in _uistate.value!!.tasks){
                         Log.i("TasksVM", t.toString())
                     }
+                }
+            }catch (ex: Exception){
+                Log.i("Exception",ex.message,ex)
+            }
+        }
+    }
+
+    @SuppressLint("ShowToast")
+    fun createTask(context: Context, token:String, taskRequest: CreateTaskRequest){
+        val taskRepo = TasksRepository()
+        viewModelScope.launch {
+            try {
+                val response = taskRepo.createTask(token,taskRequest)
+                if (response!!.isSuccessful){
+                    Toast.makeText(context,"TASK ADDED SUCCESSFULLY",Toast.LENGTH_SHORT)
                 }
             }catch (ex: Exception){
                 Log.i("Exception",ex.message,ex)

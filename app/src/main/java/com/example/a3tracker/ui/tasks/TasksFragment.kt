@@ -83,7 +83,11 @@ class TasksFragment : Fragment() {
         recyclerView = binding.recyclerView
         recyclerView.layoutManager = layoutManager
         recyclerView.setHasFixedSize(true)
-        adapter = TasksAdapter(tasksArrayList,allUsersVM,groupsVM)
+        adapter = TasksAdapter(object : TasksAdapter.OnItemClickListener {
+            override fun onItemClick(position: Int,taskId : Int) {
+                replaceFragment(TaskDetailsFragment(taskId))
+            }
+        },tasksArrayList,allUsersVM,groupsVM)
         recyclerView.adapter = adapter
     }
 
